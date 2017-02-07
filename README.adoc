@@ -1,0 +1,38 @@
+= Salt mini-Howto =
+
+This Howto is a helpful tool for those who start using Salt and wonder how to tame the beast to produce something fruitful.
+At the same time, I am new to AsciiDoc so it is kind of 2-way learning (which never turns out well :-). Good luck!
+
+NOTE: When dealing with linux distribution specific topics, I just describe it the SUSE way, time is short.
+
+== Architecture ==
+In Salt-managed environment, there is _one_ salt master and 3 or more salt minions. You enter commands on the master only,
+while the minions nicely execute them simultaneously.
+
+== Installation ==
+When your nodes' networking is set up correctly and all minions can see the master and th eother way round, it fairly easy.
+I will get to this later, I need a cheatsheet first.
+
+== Basic Command Structure ==
+`salt '*' pkg.install boopkg`
+
+Where:
+
+`salt` - Just a salt command, you need to tell the system somehow...
+
+`'\*'` - A target. This way you address the affected minions. '\*' means all minions, `'salt4min1'` filters the one.
+
+`pkg.install` - `pkg` is a module name and `install` is one of its function names you want to execute on minions.
+
+`boopkg` - Just an example argument passed to the `install` function.
+
+== CheatSheet ==
+----------------------------------------------------------
+salt '*' sys.doc # lists all modules and related functions
+
+salt '*' sys.doc pkg # lists all functions of the `pkg` module
+
+salt '*' sys.doc pkg.install # describes the method
+
+salt '*' cmd.run 'ls -l /etc' # executes the command on the remote shell, try to avoid it as it is not cross-platform
+----------------------------------------------------------
