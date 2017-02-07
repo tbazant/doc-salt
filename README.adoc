@@ -11,7 +11,7 @@ while the minions nicely execute them simultaneously.
 
 == Installation ==
 When your nodes' networking is set up correctly and all minions can see the master and th eother way round, it fairly easy.
-I will get to this later, I need a cheatsheet first.
+I will get to this later, I need more practical topics first.
 
 == Basic Command Structure ==
 `salt '*' pkg.install boopkg`
@@ -26,13 +26,21 @@ Where:
 
 `boopkg` - Just an example argument passed to the `install` function.
 
-== CheatSheet ==
+=== Command Examples ===
 ----------------------------------------------------------
 salt '*' sys.doc # lists all modules and related functions
-
-salt '*' sys.doc pkg # lists all functions of the `pkg` module
-
+salt '*' sys.doc pkg # lists all functions of the 'pkg' module
 salt '*' sys.doc pkg.install # describes the method
-
 salt '*' cmd.run 'ls -l /etc' # executes the command on the remote shell, try to avoid it as it is not cross-platform
+slat 'minion1' grains.ls # lists all grains on a minion (you can add your own to /etc/salt/grains)
 ----------------------------------------------------------
+
+=== Targetting ===
+`'\*'` targets _all_ the minions at the same time, but you usually want to target them more specifically.
+----------------------------------------------------------
+salt 'minion1' disk.usage # targetting a specific single minion by it ID
+salt 'minion*' disk.usage # targets matched by globbing
+salt -G 'os:Ubuntu' test.ping # target based on information from _Grains_
+salt -E 'minion[0-9]' test.ping # target based on a regular expression
+salt -L 'minion1,minion2' test.ping # list of multiple tagets
+salt -C 'G@os:Ubuntu and minion* or S@192.168.50.*' test.ping # combined query
