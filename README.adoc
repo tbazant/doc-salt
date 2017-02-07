@@ -20,7 +20,7 @@ Where:
 
 `salt` - Just a salt command, you need to tell the system somehow...
 
-`'\*'` - A target. This way you address the affected minions. '\*' means all minions, `'salt4min1'` filters the one.
+`'\*'` - A target. This way you address the affected minions. '*' means all minions, `'salt4min1'` filters the one.
 
 `pkg.install` - `pkg` is a module name and `install` is one of its function names you want to execute on minions.
 
@@ -36,7 +36,7 @@ slat 'minion1' grains.ls # lists all grains on a minion (you can add your own to
 ----------------------------------------------------------
 
 === Targetting ===
-`'\*'` targets _all_ the minions at the same time, but you usually want to target them more specifically.
+`'*'` targets _all_ the minions at the same time, but you usually want to target them more specifically.
 ----------------------------------------------------------
 salt 'minion1' disk.usage # targetting a specific single minion by it ID
 salt 'minion*' disk.usage # targets matched by globbing
