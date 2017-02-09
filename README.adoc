@@ -32,7 +32,7 @@ salt '*' sys.doc # lists all modules and related functions
 salt '*' sys.doc pkg # lists all functions of the 'pkg' module
 salt '*' sys.doc pkg.install # describes the method
 salt '*' cmd.run 'ls -l /etc' # executes the command on the remote shell, try to avoid it as it is not cross-platform
-slat 'minion1' grains.ls # lists all grains on a minion (you can add your own to /etc/salt/grains)
+salt 'minion1' grains.ls # lists all grains on a minion (you can add your own to /etc/salt/grains)
 ----------------------------------------------------------
 
 === Targetting ===
