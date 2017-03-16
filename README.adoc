@@ -10,7 +10,7 @@ In Salt-managed environment, there is _one_ salt master and 3 or more salt minio
 while the minions nicely execute them simultaneously.
 
 == Installation ==
-When your nodes' networking is set up correctly and all minions can see the master and th eother way round, it fairly easy.
+When your nodes' networking is set up correctly and all minions can see the master and the other way round, it's fairly easy.
 I will get to this later, I need more practical topics first.
 
 == Basic Command Structure ==
@@ -44,3 +44,8 @@ salt -G 'os:Ubuntu' test.ping # target based on information from _Grains_
 salt -E 'minion[0-9]' test.ping # target based on a regular expression
 salt -L 'minion1,minion2' test.ping # list of multiple tagets
 salt -C 'G@os:Ubuntu and minion* or S@192.168.50.*' test.ping # combined query
+----------------------------------------------------------
+
+=== Terminology ===
+runner::
+  ?!><L!KOPJKPO
