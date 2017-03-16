@@ -1,17 +1,43 @@
 = Salt mini-Howto =
 
-This Howto is a helpful tool for those who start using Salt and wonder how to tame the beast to produce something fruitful.
-At the same time, I am new to AsciiDoc so it is kind of 2-way learning (which never turns out well :-). Good luck!
-
-NOTE: When dealing with linux distribution specific topics, I just describe it the SUSE way, time is short.
+== Intro ==
+Salt is a framework that can deploy/configure/modify a group of machines to
+fulfill tasks defined by their roles.
 
 == Architecture ==
 In Salt-managed environment, there is _one_ salt master and 3 or more salt minions. You enter commands on the master only,
 while the minions nicely execute them simultaneously.
 
 == Installation ==
-When your nodes' networking is set up correctly and all minions can see the master and the other way round, it's fairly easy.
-I will get to this later, I need more practical topics first.
+When your nodes' networking is set up correctly and all minions can see the
+master and the other way round, it's fairly easy.  I will get to this later, I
+need more practical topics first.
+
+== Terminology ==
+Runners::
+ Modules that execute on the Salt master, use to list job status, view events in
+ real-time, manage Salt's file server, view Salt mine data etc. Runners are
+ called with `salt-run` command line without a target (Salt master is the
+ target).
+Grain::
+ Module that provides data about your minions. Grains include static information
+ about the underlying operating system, memory, disks etc. Grains are gathered
+ automatically when the minion starts. Grains are an important part of the
+ targeting system.
+Pillar::
+ Pillar delivers data to one or more minions using targeting. The transport is
+ encrypted so you can transfer even passwords and ssh keys. Default format for
+ storing the pillar data is YAML.
+Mine::
+ Provides a space for data shared among minions.
+State::
+ It is a description of a specific profile/role, usually stored in a *.sls
+ file for completeness and dependency. Foe example 'web_server' can be a state
+ requiring the installation of Apache+MySQL+PHP packages and running their
+ services.
+State file::
+ YAML formatted file (with *.sls extension) that includes Salt commands to define
+ a role of one or more targeted machines.
 
 == Basic Command Structure ==
 `salt '*' pkg.install boopkg`
@@ -46,6 +72,3 @@ salt -L 'minion1,minion2' test.ping # list of multiple tagets
 salt -C 'G@os:Ubuntu and minion* or S@192.168.50.*' test.ping # combined query
 ----------------------------------------------------------
 
-=== Terminology ===
-runner::
-  ?!><L!KOPJKPO
